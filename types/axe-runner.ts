@@ -20,6 +20,7 @@ export type ResultError = {
 export interface TestResult {
   audit_id: string
   selector: string | null
+  end_selector: string | null
   size: string
   results: TrimmedResults | null
   errors?: ResultError[]
@@ -32,6 +33,7 @@ export type BasicAuth = {
 
 export type Page = {
   selector?: string
+  endSelector?: string
   url: string
 }
 

@@ -106,6 +106,7 @@ export interface Database {
           results: Results
           errors: Json[] | null
           selector: string | null
+          end_selector: string | null
           size: string | null
           form_data: FormData | null
         }
@@ -115,6 +116,7 @@ export interface Database {
           id?: number
           results?: Results
           selector?: string | null
+          end_selector?: string | null
           size?: string | null
           form_data?: FormData | null
         }
@@ -124,6 +126,7 @@ export interface Database {
           id?: number
           results?: Results
           selector?: string | null
+          end_selector?: string | null
           size?: string | null
           form_data?: FormData | null
         }
