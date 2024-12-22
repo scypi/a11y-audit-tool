@@ -1,22 +1,24 @@
 FROM node:18.17-alpine AS builder
 WORKDIR /app
+
 RUN npm install -g pnpm
 COPY pnpm-lock.yaml .npmrc ./
 RUN pnpm fetch --prod
 
 COPY . ./
-RUN mv .env.example .env
+#RUN mv .env.example .env
 RUN pnpm install --prod --offline --frozen-lockfile
-#RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store pnpm install --prod --offline --frozen-lockfile
 RUN npx update-browserslist-db@latest
 RUN pnpm build
 RUN pnpm playwright
+
 ##########
 
 FROM node:18.17-alpine AS server
-ENV NODE_ENV=production
 WORKDIR /app
+ENV NODE_ENV=production
 COPY --from=builder /app/.output /app/.output
+COPY --from=builder /app/node_modules /app/node_modules
 CMD [ "node", ".output/server/index.mjs" ]
 EXPOSE 3000
 
