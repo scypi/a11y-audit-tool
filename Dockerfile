@@ -2,6 +2,7 @@ FROM node:18.17-alpine as builder
 
 WORKDIR /app
 
+RUN apk add python3 build-base
 RUN npm install -g pnpm
 
 COPY pnpm-lock.yaml .npmrc ./
