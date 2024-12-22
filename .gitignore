@@ -10,3 +10,5 @@ dist
 .DS_Store
 localhost.pem
 localhost-key.pem
+._img-*
+*.swp
