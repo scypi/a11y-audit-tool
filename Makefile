@@ -22,7 +22,7 @@ pull:							## Pull current version of server image
 	@touch ._img-$(IMAGE_TAG)
 
 push: images					## Push image to public repository
-	$(BUILDER) login -u $(HUB_USER) -p $(HUB_TOKEN)
+	$(BUILDER) login -u $(HUB_USER) -p $(HUB_TOKEN) $(HUB)
 	$(BUILDER) push $(IMAGE)statics:$(IMAGE_TAG)
 	$(BUILDER) push $(IMAGE)server:$(IMAGE_TAG)
 	@$(BUILDER) logout $(HUB)
@@ -36,7 +36,7 @@ clean:							## Clean built images, all tags
 help:							## Show this help.
 	@egrep -h '^[0-9a-zA-Z\-]+:.*##' Makefile | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
-.PHONY: images run pull push clean help
+.PHONY: images run pull push clean run help
 
 ._img-$(IMAGE_TAG):
 	@$(BUILDER) build --platform $(OS)/$(ARCH) --build-arg BUILD_DATE=$(BUILD_DATE) --build-arg CID=$(CID) --build-arg TARGETPLATFORM=$(OS)/$(ARCH) --target builder -t $(IMAGE)builder:$(IMAGE_TAG) .

@@ -1,7 +1,7 @@
 FROM node:18.17-alpine AS builder
 WORKDIR /app
 
-RUN npm install -g pnpm
+RUN npm install -g pnpm@9.15.6
 COPY pnpm-lock.yaml .npmrc ./
 RUN pnpm fetch --prod
 
@@ -19,6 +19,7 @@ WORKDIR /app
 ENV NODE_ENV=production
 COPY --from=builder /app/.output /app/.output
 COPY --from=builder /app/node_modules /app/node_modules
+COPY --from=builder /root/.cache/ms-playwright /root/.cache/ms-playwright
 CMD [ "node", ".output/server/index.mjs" ]
 EXPOSE 3000
 
