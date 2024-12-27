@@ -21,7 +21,7 @@ defineEmits<{ (e: 'close-main-menu'): void }>()
     >
       <div class="p-sidebar-header !m-0 !px-4 !py-6">
         <SvgoLogo
-          aria-label="main website logo - Snowdog company"
+          aria-label="Accessibility Meetup Poznań logo"
           class="!h-auto !w-full"
         />
       </div>
