@@ -10,7 +10,7 @@ RUN pnpm install --prod --offline --frozen-lockfile
 #RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store pnpm install --prod --offline --frozen-lockfile
 RUN npx update-browserslist-db@latest
 RUN pnpm build
-
+RUN pnpm playwright
 ##########
 
 FROM node:18.17-alpine AS server
