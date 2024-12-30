@@ -11,7 +11,8 @@
     "lint": "eslint --ext .js,.ts,.vue --ignore-path .eslintignore .",
     "format-check": "npx prettier --check ./",
     "format-write": "npx prettier --write ./",
-    "typecheck": "npx nuxi typecheck"
+    "typecheck": "npx nuxi typecheck",
+    "playwright": "npx playwright install"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
